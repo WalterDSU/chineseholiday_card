@@ -1,7 +1,8 @@
 # Chineseholiday Card
 下面图片是我个人自己修改后的版本. onlywalter那个branch. 有需要自己下载. 
 
-![QQ截图20230715213408](https://github.com/WalterDSU/chineseholiday_card/assets/91654066/8944cf72-3172-4406-9a56-58aa7f4faf2b)
+![QQ20230911115418](https://github.com/WalterDSU/chineseholiday_card/assets/91654066/f672da59-e7ad-4da2-a0b2-962ca0ad8c6a)
+
 
 更改内容:
 1. 背景去掉, 用透明
