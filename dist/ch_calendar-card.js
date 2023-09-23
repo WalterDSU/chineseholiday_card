@@ -13,8 +13,8 @@ class ChineseCalendarCard extends LitElement {
 
     return css`
         :host {
-          --main-bg-color: none /* 设置上半部分container背景颜色为none */
-          --main-title-color: white;
+          --main-bg-color: none; /* 设置上半部分container背景颜色为none */
+          --main-title-color: white; /* 设置大部分字体和日期背景颜色,如果黑色背景,字体颜色填white为白色,如果白色背景,字体颜色填black为黑色*/
           --ch-highlight-color: #03a9f4;
           --cell-title-color: white; /* 设置下半部分list的左边文字颜色为白色 */
           --cell-date-color: #aaa;
@@ -64,23 +64,26 @@ class ChineseCalendarCard extends LitElement {
         .date_solar {
           font-size: 28px; /* 设置上半部分阳历日期的字体大小, 从30到28 */
           text-align: right;
-          color: white;
+          color: var(--main-title-color);
           margin-right: 18px;
           margin-top: 18px;
+          mix-blend-mode: difference;
         }
         .date_week {
           font-size: 18px;
-          color: white;
+          color: var(--main-title-color);
           text-align: right;
           margin-right: 18px;
           margin-top: -18px;
+          mix-blend-mode: difference;
         }
         .date_lunar {
           font-size: 14px;
-          color: white;
+          color: var(--main-title-color);
           text-align: right;
           margin-right: 18px;
           margin-top: -18px;
+          mix-blend-mode: difference;
          }
         .date_text {
           font-size: 16px;
@@ -88,6 +91,7 @@ class ChineseCalendarCard extends LitElement {
           margin-right: 20px;
           margin-left: 20px;
           margin-top: 20px;
+          mix-blend-mode: difference;
         }
         .date_pdtime {
           font-size: 36px;
@@ -96,19 +100,22 @@ class ChineseCalendarCard extends LitElement {
           text-align: center;
           margin-left: 20px;
           padding-top: 30px;
+          mix-blend-mode: difference;
         } 
                
         .latest_title {
-          color: white;
+          color: var(--main-title-color);
           font-size: 14px;
           text-align: center;
           padding-top: 8px; /* 设置距离两字与上面信息之间的空隙,从35到28 */
+          mix-blend-mode: difference;
         }
         .latest_holiday {
-          color: white;
+          color: var(--main-title-color);
           font-size: 18px;
           text-align: center;
           padding-top: 4px; /* new */
+          mix-blend-mode: difference;
         }
         .latest_days {
           color: var(--ch-highlight-color); /* 设置上半部分倒计数字天数的颜色, 为用下面列表数字一样的浅蓝色,原来是白色的 */
@@ -123,27 +130,29 @@ class ChineseCalendarCard extends LitElement {
         }        
         .days-text {
           font-size: 12px; /* 设置上半部分倒计数字天数的天字的字体大小 */
-          color: white;
+          color: var(--main-title-color);
+          mix-blend-mode: difference;
         }      
         
         .latest_date {
-          color: white;
+          color: var(--main-title-color);
           font-size: 16px; /* 设置上半部分倒计数字日期的数字字体大小 */
           text-align: center;
           padding-bottom: 0px; /* 设置上半部分倒计数字日期的数字与下文的空隙 */
+          mix-blend-mode: difference;
         }
         .cell_l {
           text-align: left;
         }
         .cell_name {
           font-size: 16px;
-          color: white
-
+          color: var(--main-title-color)
+          mix-blend-mode: difference;
         }
         .cell_date {
           font-size: 14px;
           color: rgba(255, 255, 255, 0.7); /* 设置为白色的70%透明度,0代表完全透明 */
-
+          mix-blend-mode: difference;
         }
         .cell_day_h {
           text-align: right;
@@ -155,7 +164,8 @@ class ChineseCalendarCard extends LitElement {
           text-align: right;
           padding-right: 12px;
           font-size: 16px;
-          color: var(--cell-title-color);          
+          color: var(--main-title-color);  
+          mix-blend-mode: difference;        
         }
         .table {
           width: 100%;
@@ -163,6 +173,7 @@ class ChineseCalendarCard extends LitElement {
           padding-top: 8px; /* 设置下半部分倒计数字日期的数字与下文的空隙,从12到8 */
           padding-bottom: 6px; /* 设置下半部分倒计数字日期的数字与下文的空隙,从6到8 */
           padding: 1px;
+          background: none;
         }
         .container {
           background: var(--main-bg-color);
@@ -171,13 +182,15 @@ class ChineseCalendarCard extends LitElement {
         }
         .list_container {
           padding-bottom: 8px; /* 设置下半部分倒计数字日期的数字与下文的空隙,从20到8 */
+          background: none;
         }
         .clock {
           margin-left: 18px;
           font-size: 58px;
-          color: white;
+          color: var(--main-title-color);
           text-align: left;
           margin-top: 28px;
+          mix-blend-mode: difference;
         }
         .timeanddate {
           display: flex;
