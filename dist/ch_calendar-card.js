@@ -92,6 +92,7 @@ class ChineseCalendarCard extends LitElement {
           margin-left: 20px;
           margin-top: 20px;
           mix-blend-mode: difference;
+          text-align: center;
         }
         .date_pdtime {
           font-size: 36px;
