@@ -6,6 +6,7 @@ class ChineseCalendarCard extends LitElement {
   static getStubConfig() {
     return {
 	"text": '',
+  "dailyentity": sensor.daily_english,
     };
   }
 
@@ -229,7 +230,7 @@ class ChineseCalendarCard extends LitElement {
           ${pdtime}${this.user}
           </div>
           <div class="date_text">
-          ${config.text}一日三餐，记得按时吃饭，${yeshen}身体健康最重要！
+          ${config.text}${yeshen}身体健康最重要！${this.dailyEntity.attributes['note']}
           </div>          
           <div class="timeanddate">
             <div class="clock">
@@ -243,11 +244,6 @@ class ChineseCalendarCard extends LitElement {
             <p class="icon_state" style="background: none, url(${this.getStateIcon(this.calendarEntity.state)}) no-repeat; background-size: contain;"></p>
             ${this.calendarEntity.state}丨${this.attributes.week}
           </div>
-          <!--
-          <div class="date_week">
-            ${this.calendarEntity.state}，${this.attributes.week}
-          </div>
-          -->
           <div class="date_lunar">
             ${this.attributes.lunar}
           </div>
@@ -328,7 +324,10 @@ class ChineseCalendarCard extends LitElement {
 
   setConfig(config) {
     if (!config.entity) {
-      throw new Error('Please define "calendar" entity in the card config');
+      throw new Error('Please define "holiday" entity in the card config');
+    }
+    if (!config.dailyentity) {
+      throw new Error('Please define "dailyentity" entity in the card config');
     }
     this.config = config;
    }
@@ -356,14 +355,28 @@ class ChineseCalendarCard extends LitElement {
     if (!this.calendarEntity) {
       return;
     }
+    this.dailyEntity = this.config.dailyentity in hass.states ? hass.states[this.config.dailyentity] : null;
+    if (!this.dailyEntity) {
+      return;
+    }
     var list = [];
     var attributes = this.calendarEntity.attributes['data'];
     if (!attributes) {
       return;
     }
+    var dailyattributes = {
+      content: this.dailyEntity.attributes['content'],
+      note: this.dailyEntity.attributes['note'],
+      picture: this.dailyEntity.attributes['picture'],
+      tts: this.dailyEntity.attributes['tts']
+    };
+    if (!dailyattributes) {
+      return;
+    }
     var user = this._hass.user.name
     this.user = user    
     this.attributes = attributes;
+    this.dailyattributes = dailyattributes;
     // attributes['term'] = '春分';
     // attributes['festival'] = '春节';
     // attributes['anniversary'] = 'cc纪念日';
