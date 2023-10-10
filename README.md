@@ -16,6 +16,7 @@
 https://github.com/Crazysiri/chineseholiday
 
 注意：新增的每日一句需要在configuration.yaml添加下面senor，来提供每日一句的内容获取, 需要重新HA，并确定sensor.daily_english正常显示。
+```
 sensor：
   - platform: rest
     name: daily_english
