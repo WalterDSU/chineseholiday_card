@@ -1,7 +1,7 @@
 # Chineseholiday Card
 下面图片是我个人自己修改后的版本. master那个branch. 有需要自己下载. 
 
-![QQ20230911115418](https://github.com/WalterDSU/chineseholiday_card/assets/91654066/f672da59-e7ad-4da2-a0b2-962ca0ad8c6a)
+![QQ20231124230156](https://github.com/WalterDSU/chineseholiday_card/assets/91654066/8346a87f-966a-400b-962e-bd0066962504)
 
 
 更改内容:
@@ -11,6 +11,7 @@
 4. 新增问候语部分以及可自定义部分问候语
 5. 增加字体颜色自适应不同颜色的主题。
 6. 新增每日一句激励语（仅支持中文句子，其他可以提供中英互译句子和图片+英文句子语音播放，每日一句参考https://github.com/WalterDSU/ha_daily_english）
+7. 增加显示日期的星期几
 
 配合插件一起使用. 这只是一个卡片.
 https://github.com/Crazysiri/chineseholiday
