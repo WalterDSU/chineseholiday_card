@@ -254,7 +254,7 @@ class ChineseCalendarCard extends LitElement {
           <span class="days-number">${this.latestReminder.days}</span>
           <span class="days-text">天</span>
           </div>
-          <div class="latest_date">${this.dateFormatIfNeed(this.latestReminder.date)}</div>
+          <div class="latest_date">${this.dateFormatIfNeed(this.latestReminder.date)}丨${this.getWeekday(this.dateFormatIfNeed(this.latestReminder.date))}</div>
         </div>
         <div class=list_container>
           ${this.reminderList.map((item, index) => 
@@ -270,7 +270,7 @@ class ChineseCalendarCard extends LitElement {
                     <td class="cell_name">${item.name}</td>
                   </tr>
                   <tr>
-                    <td class="cell_date">${this.dateFormatIfNeed(item.date)}</td>
+                    <td class="cell_date">${this.dateFormatIfNeed(item.date)}丨${this.getWeekday(this.dateFormatIfNeed(item.date))}</td>
                   </tr>
                 </table>
               </td>
@@ -492,7 +492,13 @@ class ChineseCalendarCard extends LitElement {
 
     return date_str
   }
-
+     //求星期几	
+  getWeekday(date) {
+    const weekdays = ["星期日"，"星期一"，"星期二"，"星期三"，"星期四"，"星期五"，"星期六"];
+    const day = new Date(date).getDay();
+    const weekday = weekdays[day];
+    return weekday;
+  }
   getIcon(index) {
     return `${
       this.config.icons
