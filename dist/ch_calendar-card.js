@@ -494,7 +494,7 @@ class ChineseCalendarCard extends LitElement {
   }
      //求星期几	
   getWeekday(date) {
-    const weekdays = ["星期日"，"星期一"，"星期二"，"星期三"，"星期四"，"星期五"，"星期六"];
+    const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     const day = new Date(date).getDay();
     const weekday = weekdays[day];
     return weekday;
