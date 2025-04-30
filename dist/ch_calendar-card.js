@@ -78,6 +78,14 @@ class ChineseCalendarCard extends LitElement {
           margin-top: -18px;
           mix-blend-mode: difference;
         }
+        .date_weak_number {
+           font-size: 14px;
+           color: var(--main-title-color);
+           text-align: right;
+           margin-right: 18px;
+
+           mix-blend-mode: difference;
+         }              
         .date_lunar {
           font-size: 14px;
           color: var(--main-title-color);
@@ -150,24 +158,30 @@ class ChineseCalendarCard extends LitElement {
           font-size: 16px;
           color: var(--main-title-color)
           mix-blend-mode: difference;
+          white-space: pre-wrap;
+          
         }
         .cell_date {
           font-size: 14px;
           color: rgba(255, 255, 255, 0.7); /* 设置为白色的70%透明度,0代表完全透明 */
           mix-blend-mode: difference;
+          white-space: pre-wrap;
+          
         }
         .cell_day_h {
           text-align: right;
           padding-right: 12px;
           font-size: 16px;
           color: var(--ch-highlight-color);
+          
         }
         .cell_day_n {
           text-align: right;
           padding-right: 12px;
           font-size: 16px;
           color: var(--main-title-color);  
-          mix-blend-mode: difference;        
+          mix-blend-mode: difference;
+                 
         }
         .table {
           width: 100%;
@@ -198,27 +212,33 @@ class ChineseCalendarCard extends LitElement {
           display: flex;
           justify-content: space-between;
         }  
+        .goodnight-message {
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+          color: var(--main-title-color);
+          mix-blend-mode: difference;
+        }
     `;
   }
 
   render({config} = this) {
-    var date = new Date()
-    var hour = date.getHours()
-    var pdtime = ''
-    var yeshen = ''
-    if(hour >=6 && hour <9){
-        pdtime = "早上好，"
-    }else if(hour >=9 && hour <12){
-        pdtime = "上午好，"
-    }else if(hour >=12 && hour <13){
-        pdtime = "中午好，"
-    }else if(hour >=13 && hour <18){
-        pdtime = "下午好，"
-    }else if(hour >=18 && hour <23){
-        pdtime = "晚上好，"
-    }else{
-        pdtime = "夜深了，"
-        yeshen = "夜深了，不要熬夜了，"
+    var date = new Date();
+    var hour = date.getHours();
+    var pdtime = '';
+    var yeshen = '';
+    if (hour >= 6 && hour < 9) {
+      pdtime = "早上好，";
+    } else if (hour >= 9 && hour < 12) {
+      pdtime = "上午好，";
+    } else if (hour >= 12 && hour < 13) {
+      pdtime = "中午好，";
+    } else if (hour >= 13 && hour < 18) {
+      pdtime = "下午好，";
+    } else if (hour >= 18 && hour < 23) {
+      pdtime = "晚上好，";
+    } else {
+      pdtime = "夜深了，";
+      yeshen = "夜深了，不要熬夜了，";
     }
     return html`
       <ha-card>
@@ -230,7 +250,7 @@ class ChineseCalendarCard extends LitElement {
           ${pdtime}${this.user}
           </div>
           <div class="date_text">
-          ${config.text}${yeshen}身体健康最重要！${this.dailyEntity.attributes['note']}
+          ${config.text}${this.dailyEntity.attributes['note']}<br>${this.dailyEntity.attributes['content']}<br/>
           </div>          
           <div class="timeanddate">
             <div class="clock">
@@ -247,6 +267,9 @@ class ChineseCalendarCard extends LitElement {
           <div class="date_lunar">
             ${this.attributes.lunar}
           </div>
+          <div class="date_weak_number">
+             第${this.attributes.week_number}周
+           </div>                 
           <div class="latest_title">距离</div>
           <div class="latest_holiday">${this.latestReminder.name}</div>
      
@@ -270,7 +293,9 @@ class ChineseCalendarCard extends LitElement {
                     <td class="cell_name">${item.name}</td>
                   </tr>
                   <tr>
-                    <td class="cell_date">${this.dateFormatIfNeed(item.date)}丨${this.getWeekday(this.dateFormatIfNeed(item.date))}</td>
+                  
+                   <td class="cell_date">${this.dateFormatIfNeed(item.date)}丨${this.getWeekday(this.dateFormatIfNeed(item.date))}</td>
+                  
                   </tr>
                 </table>
               </td>
@@ -294,7 +319,6 @@ class ChineseCalendarCard extends LitElement {
             `
           )}
         </div>
-
       </ha-card>
     `;
 
@@ -471,7 +495,8 @@ class ChineseCalendarCard extends LitElement {
 
     var info = attributes['holiday_info']
     if (info) {
-        list.push({'days':info});    
+
+        list.push({'name':'节假日放假详情','date':info});    
       }
 
     var last = list[list.length-1];
@@ -492,13 +517,14 @@ class ChineseCalendarCard extends LitElement {
 
     return date_str
   }
-     //求星期几	
+     //求星期几
   getWeekday(date) {
     const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     const day = new Date(date).getDay();
     const weekday = weekdays[day];
     return weekday;
   }
+
   getIcon(index) {
     return `${
       this.config.icons
@@ -544,7 +570,6 @@ class ChineseCalendarCard extends LitElement {
     this._fire('hass-more-info', { entityId: this.config.entity });
   }
 }
-
 
 customElements.define('ch_calendar-card', ChineseCalendarCard);
 window.customCards = window.customCards || [];
