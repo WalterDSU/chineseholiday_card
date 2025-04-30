@@ -13,6 +13,8 @@
 5. 增加字体颜色自适应不同颜色的主题。
 6. 新增每日一句激励语（仅支持中文句子，其他可以提供中英互译句子和图片+英文句子语音播放，每日一句参考https://github.com/WalterDSU/ha_daily_english）
 7. 增加显示日期的星期几
+8. 增加周数显示
+9. 优化节假日放假详情显示
 
 配合插件一起使用. 这只是一个卡片.
 https://github.com/Crazysiri/chineseholiday
