@@ -1,7 +1,8 @@
 # Chineseholiday Card
 下面图片是我个人自己修改后的版本. master那个branch. 有需要自己下载. 
 
-![QQ20231124230156](https://github.com/WalterDSU/chineseholiday_card/assets/91654066/8346a87f-966a-400b-962e-bd0066962504)
+![20250430214858](https://github.com/user-attachments/assets/d5748856-537e-456f-8305-348e9f0ae310)
+
 
 
 更改内容:
