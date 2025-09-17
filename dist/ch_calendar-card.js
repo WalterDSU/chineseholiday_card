@@ -67,7 +67,7 @@ class ChineseCalendarCard extends LitElement {
           text-align: right;
           color: var(--main-title-color);
           margin-right: 18px;
-          margin-top: 18px;
+          margin-top: 0px;
           mix-blend-mode: difference;
         }
         .date_week {
@@ -75,7 +75,7 @@ class ChineseCalendarCard extends LitElement {
           color: var(--main-title-color);
           text-align: right;
           margin-right: 18px;
-          margin-top: -18px;
+          margin-top: -68px;
           mix-blend-mode: difference;
         }
         .date_weak_number {
@@ -83,7 +83,7 @@ class ChineseCalendarCard extends LitElement {
            color: var(--main-title-color);
            text-align: right;
            margin-right: 18px;
-
+           margin-top: 0px;
            mix-blend-mode: difference;
          }              
         .date_lunar {
@@ -99,7 +99,7 @@ class ChineseCalendarCard extends LitElement {
           color: var(--main-title-color);
           margin-right: 20px;
           margin-left: 20px;
-          margin-top: 20px;
+          margin-top: 0px;
           mix-blend-mode: difference;
           text-align: center;
         }
@@ -109,7 +109,7 @@ class ChineseCalendarCard extends LitElement {
           margin-right: 20px;
           text-align: center;
           margin-left: 20px;
-          padding-top: 30px;
+          padding-top: 8px;
           mix-blend-mode: difference;
         } 
                
@@ -124,32 +124,41 @@ class ChineseCalendarCard extends LitElement {
           color: var(--main-title-color);
           font-size: 18px;
           text-align: center;
-          padding-top: 4px; /* new */
+          padding-top: 0px; /* new */
+          margin-top: 0px;
           mix-blend-mode: difference;
         }
         .latest_days {
           color: var(--ch-highlight-color); /* 设置上半部分倒计数字天数的颜色, 为用下面列表数字一样的浅蓝色,原来是白色的 */
           text-align: center;
-          padding-top: 18px; /* 设置上半部分倒计数字天数的颜色与上文案间隙, 从20到18 */
+          padding-top: 0px; /* 设置上半部分倒计数字天数的颜色与上文案间隙, 从20到18 */
           padding-bottom: 0px; /* 设置上半部分倒计数字天数的颜色与下文案间隙 */
+          margin-top: 0px; /* 新增 */
+          margin-bottom: 0px; /* 新增 */
         }
         .days-number {
           font-size: 68px; /* 设置上半部分倒计数字天数的字体大小 */
           font-weight: bold;
-          display: bold;
+          
+          margin-top: 0px;
+          padding-top: 0px; 
+          padding-bottom: 0px; 
+          line-height: 1; /* 新增，确保行高不会增加太多高度 */
         }        
         .days-text {
           font-size: 12px; /* 设置上半部分倒计数字天数的天字的字体大小 */
           color: var(--main-title-color);
           mix-blend-mode: difference;
+
         }      
         
         .latest_date {
           color: var(--main-title-color);
           font-size: 16px; /* 设置上半部分倒计数字日期的数字字体大小 */
           text-align: center;
-          padding-bottom: 0px; /* 设置上半部分倒计数字日期的数字与下文的空隙 */
+           /* 设置上半部分倒计数字日期的数字与下文的空隙 */
           mix-blend-mode: difference;
+          margin-top: 0px;
         }
         .cell_l {
           text-align: left;
@@ -158,30 +167,26 @@ class ChineseCalendarCard extends LitElement {
           font-size: 16px;
           color: var(--main-title-color)
           mix-blend-mode: difference;
-          white-space: pre-wrap;
-          
+          white-space: pre-wrap;         
         }
         .cell_date {
           font-size: 14px;
           color: rgba(255, 255, 255, 0.7); /* 设置为白色的70%透明度,0代表完全透明 */
           mix-blend-mode: difference;
-          white-space: pre-wrap;
-          
+          white-space: pre-wrap;          
         }
         .cell_day_h {
           text-align: right;
           padding-right: 12px;
           font-size: 16px;
-          color: var(--ch-highlight-color);
-          
+          color: var(--ch-highlight-color);         
         }
         .cell_day_n {
           text-align: right;
           padding-right: 12px;
           font-size: 16px;
           color: var(--main-title-color);  
-          mix-blend-mode: difference;
-                 
+          mix-blend-mode: difference;                 
         }
         .table {
           width: 100%;
@@ -205,19 +210,13 @@ class ChineseCalendarCard extends LitElement {
           font-size: 58px;
           color: var(--main-title-color);
           text-align: left;
-          margin-top: 28px;
+          margin-top: 0px;
           mix-blend-mode: difference;
         }
         .timeanddate {
           display: flex;
           justify-content: space-between;
         }  
-        .goodnight-message {
-          font-family: Arial, sans-serif;
-          font-size: 16px;
-          color: var(--main-title-color);
-          mix-blend-mode: difference;
-        }
     `;
   }
 
@@ -237,7 +236,6 @@ class ChineseCalendarCard extends LitElement {
     } else if (hour >= 18 && hour < 23) {
       pdtime = "晚上好，";
     } else {
-      pdtime = "夜深了，";
       yeshen = "夜深了，不要熬夜了，";
     }
     return html`
@@ -259,7 +257,7 @@ class ChineseCalendarCard extends LitElement {
             <div class="date_solar">
               ${this.attributes.solar}
             </div>
-          </div>  
+          </div> 
           <div class="date_week">
             <p class="icon_state" style="background: none, url(${this.getStateIcon(this.calendarEntity.state)}) no-repeat; background-size: contain;"></p>
             ${this.calendarEntity.state}丨${this.attributes.week}
@@ -269,7 +267,8 @@ class ChineseCalendarCard extends LitElement {
           </div>
           <div class="date_weak_number">
              第${this.attributes.week_number}周
-           </div>                 
+           </div>   
+                          
           <div class="latest_title">距离</div>
           <div class="latest_holiday">${this.latestReminder.name}</div>
      
@@ -292,10 +291,8 @@ class ChineseCalendarCard extends LitElement {
                   <tr>
                     <td class="cell_name">${item.name}</td>
                   </tr>
-                  <tr>
-                  
-                   <td class="cell_date">${this.dateFormatIfNeed(item.date)}丨${this.getWeekday(this.dateFormatIfNeed(item.date))}</td>
-                  
+                  <tr>                 
+                   <td class="cell_date">${this.dateFormatIfNeed(item.date)}丨${this.getWeekday(this.dateFormatIfNeed(item.date))}</td>                 
                   </tr>
                 </table>
               </td>
@@ -319,7 +316,8 @@ class ChineseCalendarCard extends LitElement {
             `
           )}
         </div>
-      </ha-card>
+
+        </ha-card>
     `;
 
 
@@ -524,7 +522,6 @@ class ChineseCalendarCard extends LitElement {
     const weekday = weekdays[day];
     return weekday;
   }
-
   getIcon(index) {
     return `${
       this.config.icons
@@ -570,6 +567,7 @@ class ChineseCalendarCard extends LitElement {
     this._fire('hass-more-info', { entityId: this.config.entity });
   }
 }
+
 
 customElements.define('ch_calendar-card', ChineseCalendarCard);
 window.customCards = window.customCards || [];
